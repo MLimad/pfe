@@ -32,9 +32,10 @@ app.get("/search/:date",(req,res) => {
     ON formation.projet_id = projet.projet_id
     JOIN status
     ON formation.status_id = status.status_id
-    WHERE date_debut = ?;
+    WHERE date_debut = ? 
+    OR date_fin = ? ;
     `;
-    db.query(sql,date,(err,data)=> {
+    db.query(sql,[date,date],(err,data)=> {
         if (err) return console.log(res.send(err));
         return res.json(data);
     })
