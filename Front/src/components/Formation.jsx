@@ -86,7 +86,7 @@ function Formation() {
   }
 
   // Get ID From Select Box Axe
-  const handleCick = async(e) => {
+  const handleClick = async(e) => {
     const selectedAxe = e.target.value
     setIsProjectVisible(false);
 
@@ -119,11 +119,11 @@ function Formation() {
           <div className="row">
             <div className="col">
             <label htmlFor="axe" className='form-label'>Axe</label>
-              <select name="axe selectAxeID" id="axe" className="form-control"  onChange={(e) => values.axe = e.target.value} >
+              <select name="axe selectAxeID" id="axe" className="form-control" onClick={handleClick}  onChange={(e) => values.axe = e.target.value} >
                  <option selected>Select ...</option>
             {
               axeDB.map((item)=>(
-                <option value={item.axe_id} onClick={handleCick}>{item.nom_axe}</option>
+                <option value={item.axe_id}   >{item.nom_axe}</option>
               ))
             }
           </select>
