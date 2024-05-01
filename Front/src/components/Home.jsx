@@ -13,7 +13,7 @@ function Home() {
   useEffect(()=>{
 
   if (searchDate) {
-    const fetchAllData = async()=>{gt
+    const fetchAllData = async()=>{
       try {
         const res = await axios.get("http://localhost:5000/search/"+searchDate);
         setData(res.data);
