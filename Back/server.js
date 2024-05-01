@@ -20,6 +20,7 @@ const db = mysql.createConnection({
 // Get Data Based on Search Date
 app.get("/search/:date",(req,res) => {
     const date = req.params.date
+    const formatDate = date.replace("-", "/");
     const sql= `
     SELECT 
     formation_id,nom_axe,date_debut,date_fin,module,annee_scolaire,nom_etab,nom_projet,status
@@ -32,10 +33,9 @@ app.get("/search/:date",(req,res) => {
     ON formation.projet_id = projet.projet_id
     JOIN status
     ON formation.status_id = status.status_id
-    WHERE date_debut = ? 
-    OR date_fin = ? ;
+    WHERE annee_scolaire = ? ;
     `;
-    db.query(sql,[date,date],(err,data)=> {
+    db.query(sql,formatDate,(err,data)=> {
         if (err) return console.log(res.send(err));
         return res.json(data);
     })

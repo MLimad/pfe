@@ -13,7 +13,7 @@ function Home() {
   useEffect(()=>{
 
   if (searchDate) {
-    const fetchAllData = async()=>{
+    const fetchAllData = async()=>{gt
       try {
         const res = await axios.get("http://localhost:5000/search/"+searchDate);
         setData(res.data);
@@ -41,11 +41,15 @@ function Home() {
  
 
   return (
-    <div className='container '>
+    <div className='mx-5'>
         <div className="row d-flex align-items-center">
           <div className="col-3">
-            <label htmlFor="searchDate"><FontAwesomeIcon icon={faMagnifyingGlass} /> Rechercher par date</label>
-            <input type="date" id="searchDate" className="form-control form-control-sm" onChange={(e)=>{setSearchDate(e.target.value)}} />
+            <label htmlFor="searchDate"><FontAwesomeIcon icon={faMagnifyingGlass} /> Rechercher par Annee Scolaire</label>
+            <select name="" id="" className="form-control" onChange={(e)=>{setSearchDate(e.target.value)}}>
+              <option value="2023-2024">2023/2024</option>
+              <option value="2024-2025">2024/2025</option>
+              <option value="2025-2026">2025/2026</option>
+            </select>
           </div>
           <div className="col text-center">
             <h1> List des formations</h1>
@@ -61,8 +65,8 @@ function Home() {
             <th scope="col">Axe</th>
             <th scope="col" style={{'width':'25%'}}>Nom Projet</th>
             <th scope="col">Date Début</th>
-            <th scope="col">Date Fin</th>
             <th scope="col">Nom Etablissement</th>
+            <th scope="col">Annee Scolaire</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
           </tr>
@@ -75,8 +79,8 @@ function Home() {
                   <td>{item.nom_axe}</td>
                   <td>{item.nom_projet}</td>
                   <td>{moment(item.date_debut).format("YYYY-MM-DD")}</td>
-                  <td>{moment(item.date_fin).format("YYYY-MM-DD")}</td>
                   <td>{item.nom_etab}</td>
+                  <td>{item.annee_scolaire}</td>
                   <td><span className={item.status === "Annulé" ? "badge text-bg-danger" : item.status === "En cours" ? "badge text-bg-primary" : item.status === "Achevé" ? "badge text-bg-secondary" : "badge text-bg-warning" } style={{'width':'100%'}}>{item.status}</span></td>
                   <td>
                     <Link to={`/show/${item.formation_id}`} className='btn btn-success btn-sm' title="Voir Plus"><FontAwesomeIcon icon={faEye} /></Link>
