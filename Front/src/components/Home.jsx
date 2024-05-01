@@ -44,8 +44,9 @@ function Home() {
     <div className='mx-5'>
         <div className="row d-flex align-items-center">
           <div className="col-3">
-            <label htmlFor="searchDate"><FontAwesomeIcon icon={faMagnifyingGlass} /> Rechercher par Annee Scolaire</label>
+            <label htmlFor="searchDate"><FontAwesomeIcon icon={faMagnifyingGlass} /> Recherche</label>
             <select name="" id="" className="form-control" onChange={(e)=>{setSearchDate(e.target.value)}}>
+              <option value="">Tous les années scolaire</option>
               <option value="2023-2024">2023/2024</option>
               <option value="2024-2025">2024/2025</option>
               <option value="2025-2026">2025/2026</option>
